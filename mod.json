@@ -1,0 +1,55 @@
+{
+	"geode": "5.11.2",
+	"gd": {
+		"win": "2.2081",
+		"android": "2.2081",
+		"mac": "2.2081"
+	},
+	"id": "shaksesin.click-recorder",
+	"name": "Click Recorder",
+	"version": "v1.1.0",
+	"developer": "shaksesin",
+	"description": "Records your own clicks as .gdr2 files and replays them in the level.",
+	"tags": ["utility", "recording"],
+	"settings": {
+		"mode": {
+			"name": "Mode",
+			"description": "<cy>Record</c> saves your clicks. <cg>Replay</c> plays the chosen click file. <cr>Off</c> does nothing.",
+			"type": "string",
+			"default": "Record",
+			"one-of": ["Record", "Replay", "Off"]
+		},
+		"replay-file": {
+			"name": "Replay file",
+			"description": "The .gdr2 click file to play in Replay mode.",
+			"type": "file",
+			"default": "{mod_save_dir}/recordings",
+			"control": {
+				"dialog": "open",
+				"filters": [
+					{ "description": "Click files", "files": ["*.gdr2"] }
+				]
+			}
+		},
+		"save-on-death": {
+			"name": "Save failed attempts",
+			"description": "In Record mode, also save a click file when you die, not only when you beat the level.",
+			"type": "bool",
+			"default": false
+		},
+		"tps": {
+			"name": "Ticks per second",
+			"description": "The physics tick rate your game runs at. Leave at 240 unless you changed it with a TPS mod.",
+			"type": "float",
+			"default": 240,
+			"min": 60,
+			"max": 2000
+		},
+		"show-notifications": {
+			"name": "Show notifications",
+			"description": "Show a message when a recording is saved or a replay starts.",
+			"type": "bool",
+			"default": true
+		}
+	}
+}
