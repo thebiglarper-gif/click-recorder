@@ -7,33 +7,30 @@
 	},
 	"id": "shaksesin.click-recorder",
 	"name": "Click Recorder",
-	"version": "v1.1.0",
+	"version": "v1.2.0",
 	"developer": "shaksesin",
 	"description": "Records your own clicks as .gdr2 files and replays them in the level.",
 	"tags": ["utility", "recording"],
 	"settings": {
-		"mode": {
-			"name": "Mode",
-			"description": "<cy>Record</c> saves your clicks. <cg>Replay</c> plays the chosen click file. <cr>Off</c> does nothing.",
-			"type": "string",
-			"default": "Record",
-			"one-of": ["Record", "Replay", "Off"]
+		"recording-title": {
+			"type": "title",
+			"name": "Recording"
 		},
-		"replay-file": {
-			"name": "Replay file",
-			"description": "The .gdr2 click file to play in Replay mode.",
-			"type": "file",
-			"default": "{mod_save_dir}/recordings",
-			"control": {
-				"dialog": "open",
-				"filters": [
-					{ "description": "Click files", "files": ["*.gdr2"] }
-				]
-			}
+		"auto-record": {
+			"name": "Record automatically",
+			"description": "Start recording as soon as a level opens. Turn off to only record when you press Record.",
+			"type": "bool",
+			"default": true
+		},
+		"auto-save": {
+			"name": "Save when you beat the level",
+			"description": "Save a click file automatically when you complete the level.",
+			"type": "bool",
+			"default": true
 		},
 		"save-on-death": {
 			"name": "Save failed attempts",
-			"description": "In Record mode, also save a click file when you die, not only when you beat the level.",
+			"description": "Also save a click file when you die.",
 			"type": "bool",
 			"default": false
 		},
@@ -45,11 +42,75 @@
 			"min": 60,
 			"max": 2000
 		},
+		"replay-title": {
+			"type": "title",
+			"name": "Replay"
+		},
+		"replay-file": {
+			"name": "Replay file",
+			"description": "The .gdr2 click file that Play uses. You can also pick it with Open File in the pause menu.",
+			"type": "file",
+			"default": "{mod_save_dir}/recordings",
+			"control": {
+				"dialog": "open",
+				"filters": [
+					{ "description": "Click files", "files": ["*.gdr2"] }
+				]
+			}
+		},
+		"auto-play": {
+			"name": "Play automatically",
+			"description": "Play the replay file as soon as a level opens.",
+			"type": "bool",
+			"default": false
+		},
+		"interface-title": {
+			"type": "title",
+			"name": "Interface"
+		},
+		"hide-pause-button": {
+			"name": "Hide in pause menu",
+			"description": "Remove the Clicks button from the pause menu. The keybinds still work.",
+			"type": "bool",
+			"default": false
+		},
 		"show-notifications": {
 			"name": "Show notifications",
-			"description": "Show a message when a recording is saved or a replay starts.",
+			"description": "Show a message when recording starts or pauses, a file is saved, or a replay starts.",
 			"type": "bool",
 			"default": true
+		},
+		"keybinds-title": {
+			"type": "title",
+			"name": "Keybinds"
+		},
+		"key-record": {
+			"name": "Record / Pause",
+			"description": "Start recording, or pause it.",
+			"type": "keybind",
+			"category": "gameplay",
+			"default": "Alt+R"
+		},
+		"key-save": {
+			"name": "Save",
+			"description": "Save the clicks recorded so far.",
+			"type": "keybind",
+			"category": "gameplay",
+			"default": "Alt+S"
+		},
+		"key-play": {
+			"name": "Play / Stop",
+			"description": "Restart the level and play the replay file, or stop the replay.",
+			"type": "keybind",
+			"category": "gameplay",
+			"default": "Alt+P"
+		},
+		"key-open": {
+			"name": "Open File",
+			"description": "Choose which .gdr2 file to play.",
+			"type": "keybind",
+			"category": "gameplay",
+			"default": "Alt+O"
 		}
 	}
 }
